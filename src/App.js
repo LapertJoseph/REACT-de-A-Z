@@ -5,8 +5,8 @@ function App() {                                      // Ceci est un composant (
 
   // console.log(useState(10));                          // quand on passe un argument a la méthode useState() ca va être la donnée de départ (tableau indice 0)
 
-  const [monState, setMonState] = useState(10)          // syntaxe d'un useState qui retourne un tableau  (State de départ, fonction qui modifie le state)
-  
+  const [monState, setMonState] = useState(10)          // syntaxe d'une utilisation d'un useState qui retourne un tableau  (State de départ qui est retourner , fonction qui modifie le state)
+
   console.log(monState);
   console.log(setMonState);
 
