@@ -1,0 +1,58 @@
+Composant JSX et ses Normes.
+------------------------------
+
+
+function App() {            // Ceci est un composant ( une fonction) 
+  return (
+    <div className="App">                           {/* On écris className au lieu de class car c'est un mot réservé */}
+      <h1>Hello app React</h1>
+      <p>Lorem ipsum dolor sit amet.</p>
+      <input type="text" /> <br />                  {/* pour les inputs il faut les fermer sinon on aura une erreur */}
+      {5 + 5} <br />                                {/* on peut directement faire des calcul dans le html */}
+      {true ? 1000 : "abc"}                         {/* Rendu conditionel */}
+    </div>
+  );
+}
+
+export default App;       // export de la fonction App qui est retourner dans la div root 
+
+Premier Composant
+------------------------------
+
+1) Pour crée un composant on crée un fichier Nom.JSX (première lettre du nom en MAJ)
+2) Ensuite on crée le composant (function) dans ce fichier et on l'export
+
+    function Item () {
+        return <h1>Hello world depuis item</h1>     // quand il y a une seule ligne de code on peux tout mettre sur une ligne sans les paranthèses
+    }
+    export default Item;                            // ne pas oublier de l'exporter sinon on aura une erreur et il ne s'affichera pas
+
+3) ensuite on se rend au point d'entrée de l'app (App.js) 
+4) on import le composant en écrivant
+    
+    import Item from './Item'    (ne pas oublier les majuscules)
+
+5) on le place à l'endroit que l'on veut qu'il s'affiche
+6) TRES IMPORTANT on oublie pas de fermer la balise sinon erreur lors de la compilation
+
+Exemple : 
+            import Item from './Item'   // importation du composant
+
+            function App() {            // Ceci est un composant ( une fonction) 
+            return (
+                <div className="App">                           {/* On écris className au lieu de class car c'est un mot réservé */}
+                <h1>Hello app React</h1>                        
+                <Item />
+                </div>
+            );
+            }
+
+            export default App;       // export de la fonction App qui est retourner dans la div root
+
+2 grandes familles de composants : 
+
+"Composant Stateless" car il ne fournit qu'une présentation (il sert seulement a retourner un h1).
+"Composant State" qui vont avoir des données.
+
+Découverte de useState()
+----------------------------------------------------------------------------------------------------------------------------------------------
