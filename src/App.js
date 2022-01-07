@@ -1,25 +1,10 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+function App() {            // Ceci est un composant ( une fonction) 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Hello app React</h1>
     </div>
   );
 }
 
-export default App;
+export default App;       // export de la fonction App qui est retourner dans la div root 
