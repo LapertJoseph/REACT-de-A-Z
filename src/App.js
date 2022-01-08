@@ -6,19 +6,16 @@ function App() {                                      // Ceci est un composant (
 
   const [monState, setMonState] = useState(10);          // syntaxe d'une utilisation d'un useState qui retourne un tableau  (State de départ qui est retourner , fonction qui modifie le state)
 
-  const modifyState =  () => {
-    setMonState(20)
+  const modifyState =  (data) => {                        // dans la fonction on met en parametre data pour qu'il puisse récupérer le state de l'enfant Item
+    // console.log(data);
+    setMonState(data)
   }
 
   return (
     <div className="App">                           
       <h1>Hello State : {monState}</h1>                       {/* <= donnée du composant App (valeur de base dans le useState) */}
                                                
-      <button onClick={modifyState}>Change State</button>
-      {/* <Item txt="Hello World"/>                           {/* On utilise un composant mais on peut lui attribuer différent props */}
-      {/* <Item txt="Hello Italy"/> */}
-      {/* <Item txt="Hello Japan"/> */}
-      <Item number={monState}/>                            {/* on peut aussi afficher la valeur du state de App */}
+      <Item func={modifyState}/>                            
     </div>
   );
 }

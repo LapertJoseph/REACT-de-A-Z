@@ -107,12 +107,12 @@ ex : Item(props),
 et qui vont retourner un objet d'où les paranthèses dans 
 <Item number={monState} /> .
 
-la valeur de props dépend de ce qu'on lui donne dans App.js donc de son Parent
+ - la valeur de props dépend de ce qu'on lui donne dans App.js donc de son Parent
 dans notre exemple props prend un number car number={monState} est déclarer à coté de {monState} est donc la valeur initiale de useState,
 mais il peut aussi prendre un texte txt={"Hello world} dans ce cas la valeur de props est un txt qui prend pour valeur "Hello World"
 
-Dans les deux cas, l'objet va contenir ce qu'un parent lui donne {number="59", txt="Hello World", ...} {propriétés: valeur} <= objet JSON
-Plus important encore on peux passer du State du composant a l'enfant : 
+ - Dans les deux cas, l'objet va contenir ce qu'un parent lui donne {number="59", txt="Hello World", ...} {propriétés: valeur} <= objet JSON
+ - Plus important encore on peux passer du State du composant a l'enfant : 
 
   Dans app.js on a utiliser 
 
@@ -124,10 +124,63 @@ Plus important encore on peux passer du State du composant a l'enfant :
   
   Ici il va render l'état de monState dans l'enfant Item. (il ne faut pas oublier de repasser dans le composant Item pour modifier le props.number)
 
-Cela permet de garder les composants qui vont effectuer des tâches : appel API, Calcul, ect ect  (State = Données)
+ - Cela permet de garder les composants qui vont effectuer des tâches : appel API, Calcul, ect ect  (State = Données)
 et les autres composants qui eux vont avoir un rôle d'affichage comme dans notre exemple  <Item number={monState} /> qui affichera le state de son parent (Stateless) SOC = Separation Of Concern 
 
-On a vu 2 cas ou on peux voir des mise a jour de composant :
+ - On a vu 2 cas ou on peux voir des mise a jour de composant :
   1) utilisation de useState qui après l'avoir déclarer, on créer un addeventListener et une fonction pour modifier le state (Quand son propre state change)
   2) Lorsqu'on passe des props à App, il va s'opérer aussi un changement d'état et cela met aussi à jour le composant enfant (Item)
+
+Le changement d'état du composant va permettre donc un rerender du nouvel état.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+Remonter le State et/ou comment modifier du state d'un composant supérieur avec un composant enfant : 
+
+ - Rappel : 
+ - Quand on retourne du JSX, il faut toujours retourner un bloc 
+exemple :
+  return ( 
+        <div>                                                       // on le met dans une div pour le mettre dans un bloc 
+        <h1>{props.func}</h1>                                       // on ne peux pas mettre un h1 suivi d'un bouton sans div sinon erreur
+        <button onClick={props.func}>Change state</button>
+        </div>
+      )
+
+Pour modifier le state d'un parent avec celui de l'enfant on passe dans le render du composant enfant une fonction : <Item func={nomFonction}/> 
+puis dans le composant enfant, on passe dans l'action du changement d'état (addeventListener) props.func 
+qui va faire référence à la fonction définis dans le parent (ici modifyState)
+
+exemple : 
+  function Item (props) {                                        // déclaration d'un composant React
+    return (                                                     
+        <div>
+        <h1>{props.func}</h1>                                    // props.func fais référence a la fonction modifyState qui se trouve dans App.js
+        <button onClick={props.func}>Change state</button>       // action changement d'état : onClick={props.func}               
+        </div>
+    )              
+  } 
+
+Si l'enfant avait un state ? comment afficher le state d'un enfant dans celui d'un parent ? 
+
+import {useState} from 'react'                                                // import qui permet d'utiliser une méthode React ici useState
+
+function Item (props) {
+
+    const [itemState, setItemState] = useState('Item State !')                // State de l'enfant qui 2 parametres (une par défaut (ici un string Item State!)
+                                                                                 et une fonction setItemState)
+                         
+    return ( 
+        <div>
+        <h1>{props.func}</h1>                                                  // props.func fais référence a la fonction modifyState
+        <button onClick={() => props.func(itemState)}>Change state</button>    // ici on utilise une fonction anonyme pour retourne l'execution de la fonction 
+    )              
+}
+export default Item;
+
+il faut aussi dans la fonction qu'on a déclarer dans le parent mettre en parametre data pour qu'il puisse récupérer les données que l'on passer dans useState
+
+exemple : 
+  const modifyState =  (data) => {           // dans la fonction on met en parametre data pour qu'il puisse récupérer le state de l'enfant Item
+    // console.log(data);
+    setMonState(data)
+  }
 

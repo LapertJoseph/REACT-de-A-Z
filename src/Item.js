@@ -1,10 +1,16 @@
-function Item (props) {
-    console.log(props);                         // props renvoi un objet et il va contenir ce qu'un parent lui donne
+import {useState} from 'react'                  // import qui permet d'utiliser une méthode React ici useState
 
-    // return <h1>{props.txt}</h1>         // props.txt renvoi le string passer dans app car app est son parent
-    return <h1>{props.number}</h1>      // props.number renvoi le state passer dans app car app est son parent
-                                        
-    
+function Item (props) {
+
+    const [itemState, setItemState] = useState('Item State !')
+
+    // console.log(props);                         
+    return ( 
+        <div>
+        <h1>{props.func}</h1>                                                   {/* props.func fais référence a la fonction modifyState */}
+        <button onClick={() => props.func(itemState)}>Change state</button>
+        </div>
+    )              
 }
 
 export default Item;
