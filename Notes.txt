@@ -1,7 +1,6 @@
 Composant JSX et ses Normes.
 ------------------------------
 
-
 function App() {            // Ceci est un composant ( une fonction) 
   return (
     <div className="App">                           {/* On écris className au lieu de class car c'est un mot réservé */}
