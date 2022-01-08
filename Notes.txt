@@ -183,4 +183,31 @@ exemple :
     // console.log(data);
     setMonState(data)
   }
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+en résumé : 
+d'abord dans App.js, j'ai une fonction
 
+  const modifyState =  (data) => {           
+    setMonState(data)
+  }
+ 
+Cette fonction je la passe en props dans le render de Item : 
+
+  <Item func={modifyState}/> 
+
+Ensuite dans le composant Item je reçoit les props de App.js que je passe en parametre du composant Item . 
+  function Item (props)
+Les props sont un onjet qui ont des parametres qui viennent d'un parent (ici dans les propriétés, j'ai une fonction )
+J'utilise la fonction quand je clique sur le bouton
+<button onClick>
+Et pour que la fonction ne s'éxecute pas quand le composant se créer, j'utilise une fonction anonyme 
+  () => 
+qui quand je vais cliquer sur le bouton ca execute la fonction anonyme qui va me retourner l'execution de la props que je reçoit de la méthode recu dans App.js
+<button onClick={() => props.func(itemState)}>Change state</button>
+ca execute la fonction anonyme qui va me retourner l'execution de la props que je reçoit de la méthode recu dans App.js
+  () => props.func(itemState)}
+une fois que cela a été executer,
+je passe en argument le state de cette props du composant Item 
+  (itemState)
+et donc je vais pouvoir passer le state du composant enfant Item dans celui du parent App et je vais pouvoir changer le state du composant parent avec le
+state du composant enfant.

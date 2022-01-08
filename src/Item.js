@@ -2,7 +2,7 @@ import {useState} from 'react'                  // import qui permet d'utiliser 
 
 function Item (props) {
 
-    const [itemState, setItemState] = useState('Item State !')
+    const [itemState,] = useState('Item State !')
 
     // console.log(props);                         
     return ( 
