@@ -7,4 +7,5 @@ function Item () {
 export default Item;
 
 // "Composant Stateless" car il ne fournit qu'une présentation (il sert seulement a retourner un h1)
-// "Composant State" qui vont avoir des données 
+// "Composant State" qui vont avoir des données
+

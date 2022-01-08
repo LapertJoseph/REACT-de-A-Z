@@ -55,3 +55,47 @@ Exemple :
 
 Découverte de useState()
 ----------------------------------------------------------------------------------------------------------------------------------------------
+    const [monState, setMonState] = useState(10)          // syntaxe d'une utilisation d'un useState qui retourne un tableau  (State de départ qui est retourner , fonction qui modifie le state)
+                                                          // dans la paranthèses de = useState(10) on définis une valeur de départ ici 10
+le useState() permet de re render un état il prend deux parametre (une valeur de base, et une fonctione qui modifie cette la valeur de base)
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+Modification de useState()
+
+pour modifier un useState on utilise un addeventListener directement dans le JSX 
+par exemple :
+
+- Je place un addeventListener sur le bouton pour que quand je clique il me change l'état de state suivi d'une fontion entre Accolade 
+      <div className="App">                           
+        <h1>Hello State : {monState}</h1>                       // je place monState dans le h1 pour bien voir le changement d'état
+                                                
+        <button onClick={modifyState}>Change State</button>     // je place un addeventListener sur le button addeventListener sur le bouton onClick={nomFunction}
+      </div>
+
+- ensuite je créer une fonction pour pouvoir intéragir avec le onClick comme un addeventListener normal JSX
+  onClick={modifyState}     // modifyState est le nom de fonction créer pour modifier l'état du state 
+
+- on déclare la fonction modifyState plus haut dessus de l'exemple : 
+
+  const modifyState =  () => {                // fonction fléchée nomFunction = () => {}
+    setMonState(20)                           // à l'intérieur de la fontion, on utilise le deuxieme parametre de useState (ici setMonState) et on lui passe une valeur
+  }
+
+ce qui donne le code suivant 
+
+    function App() {                                                    
+
+      const [monState, setMonState] = useState(10);          
+
+      const modifyState =  () => {                      // fonction qui modifie le state
+        setMonState(20)
+      }
+
+      return (
+        <div className="App">                           
+          <h1>Hello State : {monState}</h1>   
+                                                  
+          <button onClick={modifyState}>Change State</button>     // ajout de l'addeventListener onClick
+        </div>
+      );
+    }
