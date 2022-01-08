@@ -52,7 +52,7 @@ Exemple :
 
 "Composant Stateless" car il ne fournit qu'une présentation (il sert seulement a retourner un h1).
 "Composant State" qui vont avoir des données.
-
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
 Découverte de useState()
 ----------------------------------------------------------------------------------------------------------------------------------------------
     const [monState, setMonState] = useState(10)          // syntaxe d'une utilisation d'un useState qui retourne un tableau  (State de départ qui est retourner , fonction qui modifie le state)
@@ -99,3 +99,35 @@ ce qui donne le code suivant
         </div>
       );
     }
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+Les props :
+
+Ce sont des propriétés qui sont passé en paramètre du composant 
+ex : Item(props), 
+et qui vont retourner un objet d'où les paranthèses dans 
+<Item number={monState} /> .
+
+la valeur de props dépend de ce qu'on lui donne dans App.js donc de son Parent
+dans notre exemple props prend un number car number={monState} est déclarer à coté de {monState} est donc la valeur initiale de useState,
+mais il peut aussi prendre un texte txt={"Hello world} dans ce cas la valeur de props est un txt qui prend pour valeur "Hello World"
+
+Dans les deux cas, l'objet va contenir ce qu'un parent lui donne {number="59", txt="Hello World", ...} {propriétés: valeur} <= objet JSON
+Plus important encore on peux passer du State du composant a l'enfant : 
+
+  Dans app.js on a utiliser 
+
+    const {monState, setMonState} = useState(10)
+
+  on peut passer le state de app.js dans le second composant Item 
+
+    <Item number={monState} /> 
+  
+  Ici il va render l'état de monState dans l'enfant Item. (il ne faut pas oublier de repasser dans le composant Item pour modifier le props.number)
+
+Cela permet de garder les composants qui vont effectuer des tâches : appel API, Calcul, ect ect  (State = Données)
+et les autres composants qui eux vont avoir un rôle d'affichage comme dans notre exemple  <Item number={monState} /> qui affichera le state de son parent (Stateless) SOC = Separation Of Concern 
+
+On a vu 2 cas ou on peux voir des mise a jour de composant :
+  1) utilisation de useState qui après l'avoir déclarer, on créer un addeventListener et une fonction pour modifier le state (Quand son propre state change)
+  2) Lorsqu'on passe des props à App, il va s'opérer aussi un changement d'état et cela met aussi à jour le composant enfant (Item)
+
