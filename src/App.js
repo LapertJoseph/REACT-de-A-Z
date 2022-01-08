@@ -8,14 +8,14 @@ function App() {                                      // Ceci est un composant (
 
   const modifyState =  (data) => {                        // dans la fonction on met en parametre data pour qu'il puisse récupérer le state de l'enfant Item
     // console.log(data);
-    setMonState(data)
+    setMonState(data)                                     // on donne comme valeur d'état, l'état de useState mais de Item ('Item State !')
   }
 
   return (
     <div className="App">                           
-      <h1>Hello State : {monState}</h1>                       {/* <= donnée du composant App (valeur de base dans le useState) */}
+      <h1>Hello State : {monState}</h1>                      {/* <= donnée du composant App (valeur de base dans le useState) */}
                                                
-      <Item func={modifyState}/>                            
+      <Item func={modifyState} />                            
     </div>
   );
 }

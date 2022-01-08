@@ -211,3 +211,8 @@ je passe en argument le state de cette props du composant Item
   (itemState)
 et donc je vais pouvoir passer le state du composant enfant Item dans celui du parent App et je vais pouvoir changer le state du composant parent avec le
 state du composant enfant.
+TRES IMPORTANT : ne pas oublier de mettre dans le composant Parent "data" en parametre de la fonction créer sinon on pourra pas récupérer le state du composant 
+enfant.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+utilisation de CSS avec React
